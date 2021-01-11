@@ -8,13 +8,18 @@ document.getElementById("team-list").addEventListener("change", (event) => {
   teamListString = event.target.value
 })
 
-var copyTextareaBtn = document.getElementById('copy-example-button');
+const copyTextareaBtn = document.getElementById("copy-example-button");
 
-copyTextareaBtn.addEventListener('click', function(event) {
-  var copyTextarea = document.getElementById('team-list-example');
+copyTextareaBtn.addEventListener('click', () => {
+  const copyTextarea = document.getElementById("team-list-example");
   copyTextarea.select();
   document.execCommand('copy');
 });
+
+const restartButton = document.getElementById("restart")
+restartButton.addEventListener("click", () => {
+  location.reload()
+})
 
 document.getElementById("team-list-form").addEventListener("submit", (event) => {
   event.preventDefault()
@@ -31,6 +36,7 @@ document.getElementById("team-list-form").addEventListener("submit", (event) => 
     event.target.style.display = "none"
     document.getElementById("rounds").style.display = "block"
     document.getElementById("leaderBoard").style.display = "block"
+    restartButton.style.display = "block"
   }
 })
 

@@ -15,65 +15,70 @@
   <header class="page-header">
     <h1>Torneio de Futebol</h1>
   </header>
-  <div class="content-container">
-    <form id="team-list-form">
-      <label for="team-list">Escreva a lista de times e seu respectivo estado, separando o
-        time do estado por <b>";"</b> e separando os times por linha usando <b>"ENTER"</b>
-      </label>
-      <div class="field-block">
-        <textarea id="team-list" autofocus></textarea>
-        <div class="example-block">
-          <span>Exemplo:</span>
-          <div class="example">
-            <textarea id="team-list-example" readonly cols="35" rows="6">
+  <div class="container">
+    <div class="tournament-container">
+      <form id="team-list-form">
+        <label for="team-list">Escreva a lista de times e seu respectivo estado, separando o
+          time do estado por <b>";"</b> e separando os times por linha usando <b>"ENTER"</b>
+        </label>
+        <div class="fields-block">
+          <textarea id="team-list" autofocus></textarea>
+          <div class="example-block">
+            <label for="team-list-example">Exemplo para copiar:</label>
+            <div class="example">
+              <textarea id="team-list-example" readonly cols="35" rows="6">
 Vasco;Rio de Janeiro
 Flamengo;Rio de Janeiro
 Palmeiras;São Paulo
 Santos;São Paulo
 Cruzeiro;Minas Gerais
 Internacional;Rio Grande do Sul</textarea>
-            <button id="copy-example-button">
-              <i class="fa fa-clipboard" title="Copiar para a área de transfência"></i>
-            </button>
+              <button id="copy-example-button">
+                <i class="fa fa-clipboard" title="Copiar para a área de transfência"></i>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <button type="submit" class="generate-rounds">Enviar</button>
-    </form>
-    <section id="rounds">
-      <header class="rounds-header">
-        <div>
-          <button id="previousRound" class="prev">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-        </div>
-        <h3 id="roundTitle">Rodada 1</h3>
-        <div>
-          <button id="nextRound" class="next">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
-      </header>
-      <ul id=roundContent>
+        <button type="submit" class="generate-rounds">Gerar torneio</button>
+      </form>
+      <section id="rounds">
+        <header class="rounds-header">
+          <div>
+            <button id="previousRound" class="prev">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+          </div>
+          <h3 id="roundTitle">Rodada 1</h3>
+          <div>
+            <button id="nextRound" class="next">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </header>
+        <ul id=roundContent>
 
-      </ul>
-    </section>
-    <section id="leaderBoard">
-      <table>
-        <thead>
-          <tr>
-            <th>Classificação</th>
-            <th title="Pontos">Pts</th>
-            <th title="Vitórias">V</th>
-            <th title="Derrotas">D</th>
-            <th title="Empates">E</th>
-            <th title="Saldo de Gols">SG</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </section>
+        </ul>
+      </section>
+      <section id="leaderBoard">
+        <table>
+          <thead>
+            <tr>
+              <th>Classificação</th>
+              <th title="Pontos">Pts</th>
+              <th title="Vitórias">V</th>
+              <th title="Derrotas">D</th>
+              <th title="Empates">E</th>
+              <th title="Saldo de Gols">SG</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </section>
+    </div>
+    <button id="restart">
+      Criar outro torneio
+    </button>
   </div>
   <footer class="page-footer">
     Developed by

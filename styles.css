@@ -35,10 +35,17 @@ ul, li {
   margin-bottom: 10vh;
 }
 
-.content-container {
+.container {
   width: 90%;
   margin: 0 auto;
   margin-bottom: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tournament-container {
+  width: 100%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -51,17 +58,17 @@ ul, li {
   align-items: center;
 }
 
-.field-block {
+#team-list-form .fields-block {
   display: flex;
   /* flex-direction: column; */
   align-items: center;
 }
 
-.field-block .example-block {
+#team-list-form .fields-block .example-block {
   margin-left: 30px;
 }
 
-.field-block .example {
+#team-list-form .fields-block .example {
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -74,7 +81,7 @@ ul, li {
               inset 2px 2px 8px rgba(0,0,0,0.15);
 }
 
-.field-block #team-list-example {
+#team-list-form .fields-block #team-list-example {
   color: #444;
   background: transparent;
   resize: none;
@@ -84,7 +91,7 @@ ul, li {
   font-style: italic;
 }
 
-.field-block .example button {
+#team-list-form .fields-block .example button {
   border: none;
   background: none;
   outline: none;
@@ -92,12 +99,7 @@ ul, li {
   color: #CCC;
 }
 
-.field-block label {
-  max-width: 50%;
-  display: inline-block;
-}
-
-.field-block textarea#team-list {
+#team-list-form .fields-block textarea#team-list {
   flex: 1;
   align-self: center;
   width: 350px;
@@ -107,15 +109,15 @@ ul, li {
   border-radius: 0.8rem;
   background: #DDD;
   outline: none;
-  border: 1px solid #FFF;
+  border: 1px solid #999;
   padding: 12px 16px;
   font-size: 16px;
 }
-.field-block textarea#team-list:focus {
+#team-list-form .fields-block textarea#team-list:focus {
   border: 2px solid #222;
 }
 
-button.generate-rounds {
+#team-list-form button.generate-rounds {
   background-color: #3BF;
   color: white;
   font-weight: bold;
@@ -123,13 +125,13 @@ button.generate-rounds {
   padding: 12px;
   border-radius: 8px;
   border: none;
-  margin-top: 8px;
+  margin-top: 20px;
   outline: none;
   box-shadow: 0 5px 0 1px #2AF;
   transition: 0.2s;
 }
 
-button.generate-rounds:active {
+#team-list-form button.generate-rounds:active {
   transform: translateY(5px);
   box-shadow: none;
 }
@@ -309,6 +311,26 @@ button.generate-rounds:active {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+button#restart {
+  display: none;
+  background-color: #3BF;
+  color: white;
+  font-weight: bold;
+  width: 300px;
+  padding: 12px;
+  margin-top: 40px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 5px 0 1px #2AF;
+  transition: 0.2s;
+}
+
+button#restart:active {
+  transform: translateY(5px);
+  box-shadow: none;
 }
 
 .page-footer {
