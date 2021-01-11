@@ -16,7 +16,9 @@ document.getElementById("team-list-form").addEventListener("submit", (event) => 
     const rounds = createRounds(teamList)
     numberOfRounds = rounds.length
     const roundsWithResult = generateRandomResult(rounds)
-    console.log(roundsWithResult)
+    generateRoundsHtml(roundsWithResult)
+    event.target.style.display = "none"
+    document.getElementById("rounds").style.display = "block"
   }
 })
 
@@ -137,22 +139,14 @@ function generateRandomResult(rounds) {
       matchResult.awayTeam.goals = randomGoal()
 
       if (matchResult.homeTeam.goals > matchResult.awayTeam.goals) {
-        matchResult.homeTeam.win = true
-        matchResult.awayTeam.win = false
-
         incrementInGlobalResult(matchResult.homeTeam.teamIndex, matchResult.homeTeam.goals, "win")
         incrementInGlobalResult(matchResult.awayTeam.teamIndex, matchResult.awayTeam.goals, "lose")
 
       } else if (matchResult.awayTeam.goals > matchResult.homeTeam.goals) {
-        matchResult.awayTeam.win = true
-        matchResult.homeTeam.win = false
-
         incrementInGlobalResult(matchResult.homeTeam.teamIndex, matchResult.homeTeam.goals, "lose")
         incrementInGlobalResult(matchResult.awayTeam.teamIndex, matchResult.awayTeam.goals, "win")
 
       } else {
-        matchResult.draw = true
-
         incrementInGlobalResult(matchResult.homeTeam.teamIndex, matchResult.homeTeam.goals, "draw")
         incrementInGlobalResult(matchResult.awayTeam.teamIndex, matchResult.awayTeam.goals, "draw")
       }
@@ -160,4 +154,55 @@ function generateRandomResult(rounds) {
       return matchResult
     })
   })
+}
+
+function generateRoundsHtml(rounds) {
+  const roundsList = document.getElementById("roundContent")
+
+  const roundHtml = rounds.map((round, index) => {
+    const roundLi = document.createElement("li")
+    roundLi.dataset.round = index + 1
+
+    const matchesHtml = round.map(match => {
+      const matchDiv = document.createElement("div")
+      matchDiv.className = "match"
+
+      const place = document.createElement("div")
+      place.className = "place"
+      place.innerHTML = match.place
+
+
+      const matchResult = document.createElement("div")
+      matchResult.className = "match-result"
+
+      const homeTeam = document.createElement("div")
+      homeTeam.classList = "home-team"
+      const homeTeamName = document.createElement("span")
+      homeTeamName.innerHTML = match.homeTeam.teamName
+      const homeTeamGoals = document.createElement("strong")
+      homeTeamGoals.innerHTML = match.homeTeam.goals
+      homeTeam.append(homeTeamName, homeTeamGoals)
+
+      const versus = document.createElement("i")
+      versus.classList = "versus fa fa-times"
+
+      const awayTeam = document.createElement("div")
+      awayTeam.className = "away-team"
+      const awayTeamName = document.createElement("span")
+      awayTeamName.innerHTML = match.awayTeam.teamName
+      const awayTeamGoals = document.createElement("strong")
+      awayTeamGoals.innerHTML = match.awayTeam.goals
+      awayTeam.append(awayTeamName, awayTeamGoals)
+
+      matchResult.append(homeTeam, versus, awayTeam)
+      matchDiv.append(place, matchResult)
+
+      return matchDiv
+    })
+
+    roundLi.append(...matchesHtml)
+    return roundLi
+  })
+
+  roundsList.append(...roundHtml)
 }
