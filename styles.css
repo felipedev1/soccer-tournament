@@ -5,6 +5,7 @@
 }
 
 body {
+  background-color: #FFF;
   position: relative;
   overflow-x: hidden;
   min-height: 100vh;
@@ -25,6 +26,7 @@ ul, li {
 }
 
 .page-header {
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,6 +45,7 @@ ul, li {
 }
 
 #team-list-form {
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,23 +53,65 @@ ul, li {
 
 .field-block {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
 }
 
-.field-block textarea {
+.field-block .example-block {
+  margin-left: 30px;
+}
+
+.field-block .example {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  background-color: #FFF;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: inset -2px -2px 8px rgba(255,255,255,1),
+              inset -2px -2px 12px rgba(255,255,255,0.5),
+              inset 2px 2px 4px rgba(255,255,255,0.1),
+              inset 2px 2px 8px rgba(0,0,0,0.15);
+}
+
+.field-block #team-list-example {
+  color: #444;
+  background: transparent;
+  resize: none;
+  overflow: hidden;
+  outline: none;
+  border: none;
+  font-style: italic;
+}
+
+.field-block .example button {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 24px;
+  color: #CCC;
+}
+
+.field-block label {
+  max-width: 50%;
+  display: inline-block;
+}
+
+.field-block textarea#team-list {
+  flex: 1;
+  align-self: center;
   width: 350px;
   height: 16rem;
   min-height: 8rem;
   margin-top: 0.8rem;
   border-radius: 0.8rem;
-  background: #eee;
+  background: #DDD;
   outline: none;
   border: 1px solid #FFF;
   padding: 12px 16px;
   font-size: 16px;
 }
-.field-block textarea:focus {
+.field-block textarea#team-list:focus {
   border: 2px solid #222;
 }
 
@@ -267,6 +312,7 @@ button.generate-rounds:active {
 }
 
 .page-footer {
+  background-color: white;
   position: absolute;
   bottom: 0;
   height: 7vh;

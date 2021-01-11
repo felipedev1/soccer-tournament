@@ -8,6 +8,14 @@ document.getElementById("team-list").addEventListener("change", (event) => {
   teamListString = event.target.value
 })
 
+var copyTextareaBtn = document.getElementById('copy-example-button');
+
+copyTextareaBtn.addEventListener('click', function(event) {
+  var copyTextarea = document.getElementById('team-list-example');
+  copyTextarea.select();
+  document.execCommand('copy');
+});
+
 document.getElementById("team-list-form").addEventListener("submit", (event) => {
   event.preventDefault()
 
