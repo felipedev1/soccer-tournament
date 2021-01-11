@@ -2,6 +2,7 @@ let teamListString = ""
 let teamList = []
 let teamListResult = []
 let numberOfRounds = 0
+let roundShown = 1
 
 document.getElementById("team-list").addEventListener("change", (event) => {
   teamListString = event.target.value
@@ -21,6 +22,13 @@ document.getElementById("team-list-form").addEventListener("submit", (event) => 
     document.getElementById("rounds").style.display = "block"
   }
 })
+
+const previousRoundButton = document.getElementById("previousRound")
+previousRoundButton.addEventListener("click", () => changeRoundShown("prev"))
+const nextRoundButton = document.getElementById("nextRound")
+nextRoundButton.addEventListener("click", () => changeRoundShown("next"))
+
+
 
 function createGlobalTeamList() {
   teamList = teamListString.split("\n").map((teamAndState, index) => {
@@ -205,4 +213,29 @@ function generateRoundsHtml(rounds) {
   })
 
   roundsList.append(...roundHtml)
+}
+
+function changeRoundShown(command) {
+
+  if (command == "next" && roundShown < numberOfRounds) {
+    roundShown++
+  } else if (command == "prev" && roundShown > 1) {
+    roundShown--
+  } else {
+    return;
+  }
+
+  previousRoundButton.style.display = roundShown > 1 ? "block" : "none"
+  nextRoundButton.style.display = roundShown < numberOfRounds ? "block" : "none"
+
+  document.getElementById("roundTitle").innerHTML = `Rodada ${roundShown}`
+
+  // Get all elements with attribute data-round and hide them
+  const roundsHtml = document.querySelectorAll("li[data-round]");
+  for (let i = 0; i < roundsHtml.length; i++) {
+    roundsHtml[i].style.display = "none";
+  }
+
+  // Show the current tab
+  document.querySelector(`li[data-round="${roundShown}"]`).style.display = "block";
 }

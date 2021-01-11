@@ -124,6 +124,9 @@ button.generate-rounds:active {
   outline: none;
   font-size: 20px;
   padding: 3px;
+}
+
+#rounds .rounds-header button i {
   transition: 0.2s ease;
 }
 
@@ -131,12 +134,12 @@ button.generate-rounds:active {
   display: none;
 }
 
-#rounds .rounds-header button.prev:active {
-  transform: translateX(-10px);
+#rounds .rounds-header button.prev:active i {
+  transform: translateX(-8px);
 }
 
-#rounds .rounds-header button.next:active {
-  transform: translateX(10px);
+#rounds .rounds-header button.next:active i {
+  transform: translateX(8px);
 }
 
 #rounds ul {
@@ -185,13 +188,13 @@ button.generate-rounds:active {
 
 }
 
-#rounds .match-result .team1,
-#rounds .match-result .team2 {
+#rounds .match-result .home-team,
+#rounds .match-result .away-team {
   flex: 1;
   display: flex;
   justify-content: space-between;
 }
-#rounds .match .match-result .team2
+#rounds .match .match-result .away-team
 {
   flex-direction: row-reverse;
 }
