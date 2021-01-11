@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torneio de Futebol</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1>Torneiro de Futebol</h1>
+  </header>
+  <div class="content-container">
+    <form id="team-list-form">
+      <div class="field-block">
+        <label for="team-list">Escreva a lista de times</label>
+        <textarea id="team-list"></textarea>
+      </div>
+      <button type="submit" class="generate-rounds">Enviar</button>
+    </form>
+    <section id="rounds">
+      <header class="rounds-header">
+        <div>
+          <button id="previousRound" class="prev">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+        <h3 id="roundTitle">Rodada 1</h3>
+        <div>
+          <button id="nextRound" class="next">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </header>
+      <ul id=roundContent>
+        
+      </ul>
+    </section>
+    <section id="leaderBoard">
+      <table>
+        <thead>
+          <tr>
+            <th>Classificação</th>
+            <th title="Pontos">Pts</th>
+            <th title="Vitórias">V</th>
+            <th title="Derrotas">D</th>
+            <th title="Empates">E</th>
+            <th title="Total de Gols">T. Gols</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </section>
+  </div>
+  <footer class="page-footer">
+    Developed by 
+    <a href="https://github.com/felipedev1">
+      Felipe
+    </a> 
+  </footer>
+  <script src="index.js"></script>
+</body>
+</html>
