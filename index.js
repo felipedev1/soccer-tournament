@@ -26,7 +26,7 @@ document.getElementById("team-list-form").addEventListener("submit", (event) => 
 
   createGlobalTeamList()
 
-  if(teamList.length > 1) {
+  if (teamList.length > 1) {
     const rounds = createRounds(teamList)
     numberOfRounds = rounds.length
     const roundsWithResult = generateRandomResult(rounds)
@@ -214,7 +214,7 @@ function generateRoundsHtml(rounds) {
       place.className = "place"
       place.innerHTML = match.place
 
-      
+
       if (match.doubleRound) {
         const doubleRound = document.createElement("span")
         doubleRound.innerHTML = " (Rodada dupla)"
@@ -281,7 +281,7 @@ function generateLeaderBoard(teamsPlacing) {
     teamNameHtml.innerHTML = team.teamName
     const trophySpan = document.createElement("span")
 
-    function showTrophy(color){
+    function showTrophy(color) {
       const trophyIcon = document.createElement('i')
       trophyIcon.classList = "fa fa-trophy"
       trophyIcon.style.color = color
