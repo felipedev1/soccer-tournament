@@ -108,7 +108,25 @@ function createRounds(teams) {
     tournamentPairings.push(newReverseRounds)
   }
 
-  return tournamentPairings
+  // this will check if exists another game in the same place
+  const roundsChecked = tournamentPairings.map(round => {
+    return round.map((match, index) => {
+      const indexOfOtherMatch = round
+        .map(otherMatch => otherMatch.place)
+        .indexOf(match.place)
+
+      if (indexOfOtherMatch !== -1 && indexOfOtherMatch !== index) {
+        match.doubleRound = true
+        round[indexOfOtherMatch].doubleRound = true
+      }
+      else {
+        match.doubleRound = false
+      }
+      return match
+    })
+  })
+
+  return roundsChecked
 }
 
 function generateRandomResult(rounds) {
@@ -168,19 +186,26 @@ function generateRandomResult(rounds) {
 }
 
 function generateRoundsHtml(rounds) {
-  const roundsList = document.getElementById("roundContent")
+  const roundsListHtml = document.getElementById("roundContent")
 
-  const roundHtml = rounds.map((round, index) => {
+  const roundHtml = rounds.map((round, roundIndex) => {
     const roundLi = document.createElement("li")
-    roundLi.dataset.round = index + 1
+    roundLi.dataset.round = roundIndex + 1
 
-    const matchesHtml = round.map(match => {
+    const matchesHtml = round.map((match, matchIndex) => {
       const matchDiv = document.createElement("div")
       matchDiv.className = "match"
 
       const place = document.createElement("div")
       place.className = "place"
       place.innerHTML = match.place
+
+      
+      if (match.doubleRound) {
+        const doubleRound = document.createElement("span")
+        doubleRound.innerHTML = " (Rodada dupla)"
+        place.appendChild(doubleRound)
+      }
 
 
       const matchResult = document.createElement("div")
@@ -215,7 +240,7 @@ function generateRoundsHtml(rounds) {
     return roundLi
   })
 
-  roundsList.append(...roundHtml)
+  roundsListHtml.append(...roundHtml)
 }
 
 function sortTeamsByPlacement() {
