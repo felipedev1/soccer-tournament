@@ -18,8 +18,11 @@ document.getElementById("team-list-form").addEventListener("submit", (event) => 
     numberOfRounds = rounds.length
     const roundsWithResult = generateRandomResult(rounds)
     generateRoundsHtml(roundsWithResult)
+    generateLeaderBoard(sortTeamsByPlacement())
+
     event.target.style.display = "none"
     document.getElementById("rounds").style.display = "block"
+    document.getElementById("leaderBoard").style.display = "block"
   }
 })
 
@@ -213,6 +216,70 @@ function generateRoundsHtml(rounds) {
   })
 
   roundsList.append(...roundHtml)
+}
+
+function sortTeamsByPlacement() {
+  return teamListResult.sort((a, b) => {
+    if (a.score < b.score) return 1;
+    else if (a.score > b.score) return -1;
+    else if (a.totalGoals < b.totalGoals) return 1;
+    else if (a.totalGoals > b.totalGoals) return -1;
+    else return 0;
+  })
+}
+
+function generateLeaderBoard(teamsPlacing) {
+
+  const leaderBoardData = document.getElementById("leaderBoard").querySelector("tbody")
+  const teamsRows = teamsPlacing.map((team, index) => {
+    const teamRow = document.createElement("tr")
+
+    const placing = document.createElement("td")
+    placing.className = "placing"
+    const placingNum = document.createElement("span")
+    placingNum.innerHTML = `${index + 1}º`
+    const teamNameHtml = document.createElement("span")
+    teamNameHtml.innerHTML = team.teamName
+    const trophySpan = document.createElement("span")
+
+    function showTrophy(color){
+      const trophyIcon = document.createElement('i')
+      trophyIcon.classList = "fa fa-trophy"
+      trophyIcon.style.color = color
+      trophySpan.appendChild(trophyIcon)
+    }
+
+    switch (index + 1) {
+      case 1:
+        showTrophy("#C9B037")
+        break;
+      case 2:
+        showTrophy("#B4B4B4")
+        break;
+      case 3:
+        showTrophy("#AD8A56")
+        break;
+      default:
+        break;
+    }
+    placing.append(placingNum, teamNameHtml, trophySpan)
+
+    const score = document.createElement("td")
+    score.innerHTML = team.score
+    const wins = document.createElement("td")
+    wins.innerHTML = team.wins
+    const loses = document.createElement("td")
+    loses.innerHTML = team.loses
+    const draws = document.createElement("td")
+    draws.innerHTML = team.draws
+    const totalGoals = document.createElement("td")
+    totalGoals.innerHTML = team.totalGoals
+
+    teamRow.append(placing, score, wins, loses, draws, totalGoals)
+
+    return teamRow
+  })
+  leaderBoardData.append(...teamsRows)
 }
 
 function changeRoundShown(command) {
