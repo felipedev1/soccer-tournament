@@ -15,7 +15,8 @@ document.getElementById("team-list-form").addEventListener("submit", (event) => 
   if(teamList.length > 1) {
     const rounds = createRounds(teamList)
     numberOfRounds = rounds.length
-    console.log(rounds)
+    const roundsWithResult = generateRandomResult(rounds)
+    console.log(roundsWithResult)
   }
 })
 
@@ -95,4 +96,68 @@ function createRounds(teams) {
   }
 
   return tournamentPairings
+}
+
+function generateRandomResult(rounds) {
+  const newRounds = rounds.map(round => round)
+
+  // generates numbers from 0 to 5
+  function randomGoal() {
+    return Math.floor(Math.random() * 6)
+  }
+
+  function incrementInGlobalResult(index, goals, situation) {
+    switch (situation) {
+      case "win":
+        teamListResult[index].score += 3
+        teamListResult[index].totalGoals += goals
+        teamListResult[index].wins += 1
+        break;
+      case "lose":
+        teamListResult[index].totalGoals += goals
+        teamListResult[index].loses += 1
+        break;
+      case "draw":
+        teamListResult[index].score += 1
+        teamListResult[index].totalGoals += goals
+        teamListResult[index].draws += 1
+        break;
+      default:
+        break;
+    }
+  }
+
+  return newRounds.map(round => {
+    return round.map(match => {
+      // I did this because the object reference in javascript would change the 
+      // "match" object and the entire array
+      const matchResult = JSON.parse(JSON.stringify(match))
+
+      matchResult.homeTeam.goals = randomGoal()
+      matchResult.awayTeam.goals = randomGoal()
+
+      if (matchResult.homeTeam.goals > matchResult.awayTeam.goals) {
+        matchResult.homeTeam.win = true
+        matchResult.awayTeam.win = false
+
+        incrementInGlobalResult(matchResult.homeTeam.teamIndex, matchResult.homeTeam.goals, "win")
+        incrementInGlobalResult(matchResult.awayTeam.teamIndex, matchResult.awayTeam.goals, "lose")
+
+      } else if (matchResult.awayTeam.goals > matchResult.homeTeam.goals) {
+        matchResult.awayTeam.win = true
+        matchResult.homeTeam.win = false
+
+        incrementInGlobalResult(matchResult.homeTeam.teamIndex, matchResult.homeTeam.goals, "lose")
+        incrementInGlobalResult(matchResult.awayTeam.teamIndex, matchResult.awayTeam.goals, "win")
+
+      } else {
+        matchResult.draw = true
+
+        incrementInGlobalResult(matchResult.homeTeam.teamIndex, matchResult.homeTeam.goals, "draw")
+        incrementInGlobalResult(matchResult.awayTeam.teamIndex, matchResult.awayTeam.goals, "draw")
+      }
+
+      return matchResult
+    })
+  })
 }
