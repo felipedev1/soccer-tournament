@@ -61,7 +61,6 @@ li {
 
 #team-list-form .fields-block {
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
 }
 
@@ -82,8 +81,8 @@ li {
     inset 2px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-#team-list-form .fields-block #team-list-example {
-  color: #444;
+#team-list-form .fields-block textarea#team-list-example {
+  color: #555;
   background: transparent;
   resize: none;
   overflow: hidden;
@@ -122,7 +121,7 @@ li {
   background-color: #3bf;
   color: white;
   font-weight: bold;
-  width: 50%;
+  width: 280px;
   padding: 12px;
   border-radius: 8px;
   border: none;
@@ -172,6 +171,7 @@ li {
   outline: none;
   font-size: 20px;
   padding: 3px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #rounds .rounds-header button i {
@@ -213,7 +213,7 @@ li {
 }
 
 #rounds .match {
-  min-width: 300px;
+  min-width: 280px;
   text-align: center;
   padding: 8px;
   border-bottom: 1px solid #ddd;
@@ -319,7 +319,7 @@ button#restart {
   background-color: #3bf;
   color: white;
   font-weight: bold;
-  width: 300px;
+  width: 280px;
   padding: 12px;
   margin-top: 40px;
   border: none;
@@ -354,5 +354,50 @@ button#restart:active {
   #leaderBoard {
     margin-left: 0;
     margin-top: 10vh;
+  }
+}
+
+@media (max-width: 450px) {
+  body {
+    font-size: 14px;
+  }
+
+  .page-header h1 {
+    font-size: 24px;
+  }
+
+  #team-list-form {
+    width: 100%;
+    align-items: center;
+  }
+
+  #team-list-form .fields-block .example-block {
+    margin-left: 0;
+    margin-top: 30px;
+  }
+
+  .fields-block {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  #team-list-form .fields-block textarea#team-list {
+    width: 100%;
+  }
+
+  #rounds .match-result strong {
+    font-size: 18px;
+  }
+
+  #leaderBoard table td,
+  #leaderBoard table th {
+    padding: 7px 8px;
+  }
+
+}
+
+@media(max-width: 350px) {
+  #rounds .match-result .versus {
+    margin: 5px 5px 0;
   }
 }
