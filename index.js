@@ -97,6 +97,11 @@ function createRounds(teams) {
     const secondHalf = newPlayerIndexes.slice(half, teamsCount).reverse();
 
     for (let i = 0; i < firstHalf.length; i++) {
+
+      if((teams[firstHalf[i]] === null) || (teams[secondHalf[i]] === null)) {
+        continue;
+      }
+      
       roundPairings.push({
         homeTeam: teams[firstHalf[i]],
         awayTeam: teams[secondHalf[i]],
